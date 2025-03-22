@@ -8,10 +8,22 @@ const CreateTask = ({ tasks, setTasks }) => {
     status: 'todo', // can also be in progress or closed
   });
 
-  console.log(task);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (task.name.length < 3) return;
+
+    setTasks((prev) => {
+      const list = [...prev, task];
+
+      localStorage.setItem('tasks', JSON.stringify(list));
+
+      return list;
+    });
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type='text'
         className='border-2 border-slate-400 bg-slate-100 rounded-md mr-4 h-12 w-64 px-1'
