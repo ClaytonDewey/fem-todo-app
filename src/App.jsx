@@ -7,6 +7,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
+    if (tasks.length === 0) return;
     setTasks(JSON.parse(localStorage.getItem('tasks')));
   }, []);
 
